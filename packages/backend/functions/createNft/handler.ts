@@ -1,3 +1,4 @@
-export const main = () => {
-  console.log('Create a new NFT! 🎁');
+export const main = (event: any) => {
+  console.log('📆 event create nft', event);
+  return event;
 };
