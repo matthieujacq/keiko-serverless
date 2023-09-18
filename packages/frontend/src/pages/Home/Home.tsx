@@ -120,7 +120,9 @@ const Home = (): JSX.Element => {
               <ApeNFT
                 height="100px"
                 key={apeNFT.id}
-                {...apeNFT}
+                src={apeNFT.src}
+                positionx={apeNFT.positionX}
+                positiony={apeNFT.positionY}
                 onClick={() => {
                   sellApeNFT(apeNFT.id);
                   audio.play();

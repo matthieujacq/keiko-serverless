@@ -15,10 +15,10 @@ interface ApeNFTProps {
   src: string;
 }
 
-const ApeNFT = styled('img')<ApeNFTProps>`
+const ApeNFT = styled('img')<{ positionx: number; positiony: number }>`
   position: absolute;
-  top: ${props => props.positionY}%;
-  left: ${props => props.positionX}%;
+  top: ${props => props.positiony}%;
+  left: ${props => props.positionx}%;
   border-radius: 50%;
   cursor: not-allowed;
 `;
