@@ -12,9 +12,9 @@
     "test-type": "tsc --noEmit"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.287.0",
+    "@aws-sdk/client-dynamodb": "^3.370.0",
     "@aws-sdk/lib-dynamodb": "^3.415.0",
-    "@aws-sdk/util-dynamodb": "^3.287.0",
+    "@aws-sdk/util-dynamodb": "3.370.0",
     "dynamodb-toolbox": "^0.8.5"
   },
   "devDependencies": {

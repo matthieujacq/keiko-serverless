@@ -87,14 +87,14 @@ importers:
   packages/backend:
     dependencies:
       '@aws-sdk/client-dynamodb':
-        specifier: ^3.287.0
+        specifier: ^3.370.0
         version: 3.370.0
       '@aws-sdk/lib-dynamodb':
         specifier: ^3.415.0
         version: 3.415.0(@aws-sdk/client-dynamodb@3.370.0)
       '@aws-sdk/util-dynamodb':
-        specifier: ^3.287.0
-        version: 3.415.0(@aws-sdk/client-dynamodb@3.370.0)
+        specifier: 3.370.0
+        version: 3.370.0
       dynamodb-toolbox:
         specifier: ^0.8.5
         version: 0.8.5(@aws-sdk/client-dynamodb@3.370.0)(@aws-sdk/lib-dynamodb@3.415.0)
@@ -759,6 +759,13 @@ packages:
     engines: {node: '>=14.0.0'}
     dependencies:
       '@smithy/types': 1.1.1
+      tslib: 2.6.0
+    dev: false
+
+  /@aws-sdk/util-dynamodb@3.370.0:
+    resolution: {integrity: sha512-qqCm5avefrBnqXjSmw7g9Rzz3KpYDUlQwMxSQwhjaofXggo8khx/8wbcN9V8XzF1K/4gJCMymxzCkFWWq964HA==}
+    engines: {node: '>=14.0.0'}
+    dependencies:
       tslib: 2.6.0
     dev: false
 
