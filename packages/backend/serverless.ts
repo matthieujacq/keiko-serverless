@@ -42,7 +42,7 @@ const serverlessConfiguration: AWS = {
   custom: {
     projectName,
     esbuild: {
-      packager: 'yarn',
+      packager: 'yarn', // shouldn't it be pnpm?
       bundle: true,
       minify: false,
       sourcemap: true,
