@@ -81,6 +81,7 @@ const Home = (): JSX.Element => {
             <a href="https://dev.to/kumo">
               <img
                 src={kumo}
+                alt="Kumo Logo"
                 width="auto"
                 height="50px"
                 style={{ marginTop: '15px' }}
