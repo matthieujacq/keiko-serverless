@@ -81,6 +81,7 @@ const Home = (): JSX.Element => {
             <a href="https://dev.to/kumo">
               <img
                 src={kumo}
+                alt="Kumo Logo"
                 width="auto"
                 height="50px"
                 style={{ marginTop: '15px' }}
@@ -120,7 +121,9 @@ const Home = (): JSX.Element => {
               <ApeNFT
                 height="100px"
                 key={apeNFT.id}
-                {...apeNFT}
+                src={apeNFT.src}
+                positionx={apeNFT.positionX}
+                positiony={apeNFT.positionY}
                 onClick={() => {
                   sellApeNFT(apeNFT.id);
                   audio.play();
