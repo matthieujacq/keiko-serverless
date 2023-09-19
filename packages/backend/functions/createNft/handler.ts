@@ -1,8 +1,4 @@
-import {
-  DynamoDBClient,
-  PutItemCommand,
-  UpdateTableCommand,
-} from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient, PutItemCommand } from '@aws-sdk/client-dynamodb';
 import crypto from 'crypto';
 
 const randomIntFromInterval = (min: number, max: number) =>
