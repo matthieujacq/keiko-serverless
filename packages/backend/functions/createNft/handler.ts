@@ -6,7 +6,7 @@ const randomIntFromInterval = (min: number, max: number) =>
 
 const client = new DynamoDBClient({ region: 'eu-west-1' });
 
-export const main = (event: any) => {
+export const main = async (event: any) => {
   console.log('📆 event create nft', event);
 
   const id = crypto.randomUUID();
@@ -20,7 +20,8 @@ export const main = (event: any) => {
     imageIndex: { N: Math.floor(Math.random() * 5).toString() },
   };
 
-  client.send(
+  // QUESTION: for some reason if I don't use await here, the item is created but our lambda does not return data ({ id, positionX, positionY, imageIndex }})
+  await client.send(
     new PutItemCommand({ TableName: process.env.NFT_TABLE_NAME, Item }),
   );
 
