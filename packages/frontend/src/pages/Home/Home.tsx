@@ -34,6 +34,12 @@ interface ApeNFTData {
   imageIndex: number;
 }
 
+interface UserData {
+  id: string;
+  score: number;
+  name: string;
+}
+
 const ApeNFTImgs = [nft1, nft2, nft3, nft4, nft5];
 
 const randomIntFromInterval = (min: number, max: number) =>
@@ -42,22 +48,47 @@ const randomIntFromInterval = (min: number, max: number) =>
 const getNFTPrice = () => randomIntFromInterval(0, 100000);
 
 const Home = (): JSX.Element => {
+  const [userId, setUserId] = useState('');
   const [score, setScore] = useState(0);
-
   const [apeNFTs, setApeNFTs] = useState<ApeNFTProps[]>([]);
 
-  useAsync(async () => {
-    const { data } = await client.get<ApeNFTData[]>('/nfts');
+  const fetchUserData = async () => {
+    const id = localStorage.getItem('user-id');
+    if (id) {
+      // Get user data
+      setUserId(id);
+      const { data } = await client.get<UserData>(`/users/${id}`);
+      setScore(data.score);
+    } else {
+      // Create a user
+      const { data } = await client.post<UserData>('/users');
+      setUserId(data.id);
+      setScore(data.score);
+      localStorage.setItem('user-id', data.id);
+    }
+  }
+
+  const fetchApeNFTs = async () => {
+    const { data } = await client.get<ApeNFTData[]>(`/nfts/${userId}`);
     setApeNFTs(
       data.map(apeNFT => ({
         ...apeNFT,
         src: ApeNFTImgs[apeNFT.imageIndex],
       })),
     );
-  });
+  }
+
+  useAsync(async () => {
+    await fetchUserData();
+  }, []);
+
+  useAsync(async () => {
+    if (!userId) return; // without this, it works randomly
+    await fetchApeNFTs();
+  }, [userId]);
 
   const buyApeNFT = async () => {
-    const { data } = await client.post<ApeNFTData>(`/nfts`);
+    const { data } = await client.post<ApeNFTData>(`/nfts`,  { userId });
 
     setApeNFTs(prevApeNFTs =>
       prevApeNFTs.concat({ ...data, src: ApeNFTImgs[data.imageIndex] }),
@@ -66,7 +97,7 @@ const Home = (): JSX.Element => {
   };
 
   const sellApeNFT = async (apeNFTId: string) => {
-    await client.delete(`/nfts/${apeNFTId}`);
+    await client.delete(`/nfts/${userId}/${apeNFTId}`);
 
     setApeNFTs(prevApeNFTs => prevApeNFTs.filter(({ id }) => id !== apeNFTId));
     setScore(prevScore => prevScore + getNFTPrice());

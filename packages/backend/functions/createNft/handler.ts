@@ -19,5 +19,5 @@ export const main = async (event: any) => {
 
   await NFTEntity.put(Item);
 
-  return Item;
+  return { id, positionX, positionY, imageIndex };
 };
