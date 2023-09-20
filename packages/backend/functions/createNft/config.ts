@@ -1,9 +1,17 @@
 import { getHandlerPath } from 'libs/configHelper/getHandlerPath';
-import { nftTableDynamoDBWritePolicies } from 'resources/policies';
+import {
+  nftTableDynamoDBReadPolicies,
+  nftTableDynamoDBUpdatePolicies,
+  nftTableDynamoDBWritePolicies,
+} from 'resources/policies';
 
 export const createNft = {
   handler: getHandlerPath(__dirname),
-  iamRoleStatements: [nftTableDynamoDBWritePolicies],
+  iamRoleStatements: [
+    nftTableDynamoDBWritePolicies,
+    nftTableDynamoDBReadPolicies,
+    nftTableDynamoDBUpdatePolicies,
+  ],
   events: [
     {
       httpApi: {

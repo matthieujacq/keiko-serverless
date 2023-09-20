@@ -17,3 +17,9 @@ export const nftTableDynamoDBDeletePolicies = {
   Resource: [tableArn],
   Action: ['dynamodb:DeleteItem'],
 };
+
+export const nftTableDynamoDBUpdatePolicies = {
+  Effect: 'Allow',
+  Resource: [tableArn],
+  Action: ['dynamodb:UpdateItem'],
+};
