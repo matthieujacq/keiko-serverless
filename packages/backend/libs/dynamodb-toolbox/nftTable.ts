@@ -8,7 +8,6 @@ export const DocumentClient = DynamoDBDocumentClient.from(
   new DynamoDBClient({ region: 'eu-west-1' }),
   { marshallOptions },
 );
-// const DocumentClient = new DynamoDBClient({ region: 'eu-west-1' });
 
 export const nftTable = new Table({
   name: process.env.NFT_TABLE_NAME ?? 'MISSING_NFT_TABLE_NAME',
