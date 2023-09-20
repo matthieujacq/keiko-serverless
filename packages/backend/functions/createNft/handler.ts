@@ -15,7 +15,7 @@ export const main = async (event: any) => {
     id: userId,
   });
   const price = getNFTPrice();
-  const score = (user?.score || 0) - price;
+  const score = (user?.score ?? 0) - price;
   await UserEntity.update({
     PK: `User#${userId}`,
     id: userId,
